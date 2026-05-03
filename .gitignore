@@ -1,0 +1,40 @@
+# ==========================================
+# .NET / C# Standard .gitignore
+# ==========================================
+
+# 1. Build results and intermediate files
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+bld/
+[Oo]ut/
+[Pp]ublish/
+
+# 2. Visual Studio & IDE specific files
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.rsuser
+
+# 3. Visual Studio Code specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# 4. OS/Environment specific
+.DS_Store
+Thumbs.db
+
+# 5. Logs and Profiling
+*.log
+*.err
+*.pid
