@@ -6,19 +6,14 @@ static bool ContainsDuplicate(int[] nums) {
     if(nums.Length == 0 || nums.Length == 1)
         return false;
 
-    int[] uniques = new int[nums.Length];
-
-    for(int i = 0; i < nums.Length; i++)
+    HashSet<int> uniques = new();
+    
+    foreach(int number in nums)
     {
-        for(int j = 0; j < i; j++)
-        {
-            if(nums[i] == uniques[j])
-            {
-                return true;
-            }
-        }
-        uniques[i] = nums[i];
+        if(!uniques.Add(number))
+            return true;
     }
+
     return false;
 }
 
