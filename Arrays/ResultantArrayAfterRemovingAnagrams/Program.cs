@@ -3,42 +3,39 @@ string[] words = ["abba","baba","bbaa","cd","cd"];
 
 static List<string> RemoveAnagrams(string[] words)
 {
-    List<string> CleanWords = [.. words];
+    List<string> cleanWords = [.. words];
     if(words.Length == 0 || words.Length == 1)
-        return CleanWords;
+        return cleanWords;
     else
     {
-        for(int i = 1; i < CleanWords.Count; i++)
+        for(int i = 1; i < cleanWords.Count; i++)
         {
-            while(isAnagram(CleanWords.ElementAt(i-1), CleanWords.ElementAt(i)))
+            while(isAnagram(cleanWords[i-1], cleanWords[i]))
             {
-                CleanWords.RemoveAt(i);
-                if(i == CleanWords.Count)
+                cleanWords.RemoveAt(i);
+                if(i == cleanWords.Count)
                     break;
             }
         }
     }
-    return CleanWords;
+    return cleanWords;
 }
 
 static bool isAnagram(string firstWord, string secondWord)
 {
     if(firstWord.Length == secondWord.Length)
     {
-        int[] firstWordLettersCount = new int[26];
-        int[] secondWordLettersCount = new int[26];
+        int[] lettersCount = new int[26];
 
-        foreach(char letter in firstWord)
+        for(int i = 0; i < firstWord.Length; i++)
         {
-            firstWordLettersCount[letter - 'a']++; //
+            lettersCount[ firstWord[i] - 'a']++;
+            lettersCount[ secondWord[i] - 'a']--;
         }
-        foreach(char letter in secondWord)
+
+        foreach(int count in lettersCount)
         {
-            secondWordLettersCount[letter - 'a']++;
-        }
-        for(int i = 0; i < firstWordLettersCount.Length; i++)
-        {
-            if(firstWordLettersCount[i] != secondWordLettersCount[i])
+            if(count != 0)
                 return false; 
         }
         return true;
