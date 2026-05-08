@@ -2,12 +2,12 @@
 
 static int[] GetConcatenation(int[] nums)
 {
-    int[] concatNums = new int[2*nums.Length];
-    for(int i = 0; i < nums.Length; i++)
-    {
-        concatNums[i] = nums[i];
-        concatNums[nums.Length + i] = nums[i];
-    }
+    int[] concatNums = new int[2 * nums.Length];
+    Span<int> targetSpan = concatNums.AsSpan();
+
+    // Slice the target span into halves and copy the memory directly
+    nums.CopyTo(targetSpan[..nums.Length]);
+    nums.CopyTo(targetSpan.Slice(nums.Length, nums.Length));
     return concatNums;
 }
 
